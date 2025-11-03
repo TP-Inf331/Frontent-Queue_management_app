@@ -5,6 +5,7 @@ import authRoutes from './routes-config/authRoutes'
 import ScrollToTop from '@/components/custom/utils/ScrollToTop'
 import PrivateRoute from '@/components/custom/utils/PrivateRoute'
 import DynamicPageLoader from '@/components/custom/utils/LazyCompoment'
+import AdminPrivateRoute from '@/components/custom/utils/AdminPrimateRoute'
 
 /**
  * Creates a router with specified routes and elements for each route.
@@ -59,6 +60,24 @@ const Router = createBrowserRouter([
 			},
 		],
 	},
+	 {
+    path: '/admin',
+    element: <Outlet />,
+    children: [
+      {
+        path: 'login',
+        element: <DynamicPageLoader pageKey="admin/AdminLoginForm" />
+      },
+      {
+        path: 'dashboard',
+        element: (
+          
+            <DynamicPageLoader pageKey="admin/AdminDashboard" />
+          
+        )
+      }
+    ]
+  },
 ])
 
 export default Router

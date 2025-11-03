@@ -2,7 +2,7 @@
   "name": "queue-management-system",
   "private": "false",
   "version": "0.0.0",
-  "description": "description of the projet",
+  "description": "Smart queue Service management",
   "repository": {
     "type": "git",
     "url": "https://github.com/01Barthez/start-react-projet"

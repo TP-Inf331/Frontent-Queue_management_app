@@ -6,8 +6,8 @@ const Home: React.FC = () => {
         <>
             {/* Seo compoments */}
             <SEO
-                title='Welcome to iPhone Store Cameroon - Your Trusted Apple Partner'
-                description='Explore the latest iPhones and accessories at unbeatable prices. Enjoy a seamless shopping experience on our modern e-commerce platform.'
+                title='NoWait-Smart Queeue'
+                description='Smart queue service management'
             />
 
             {/* App Comoments */}

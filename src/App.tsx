@@ -9,7 +9,7 @@ import OfflineAlert from '@/components/custom/utils/OfflineAlert';
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <ScrollProgressBar />
       <RouterProvider router={Router} />
       
