@@ -18,14 +18,19 @@ interface QueueListTableProps {
 
 export const QueueListTable: React.FC<QueueListTableProps> = ({ data, onManage, onOpen, onResume }) => {
     const rows = data.map((item) => (
-        <Table.Tr key={item.id}>
+        <Table.Tr
+            key={item.id}
+            onClick={() => onManage(item.id)}
+            style={{ cursor: 'pointer' }}
+            className="hover:bg-slate-50 transition-colors"
+        >
             <Table.Td>
                 <Text fw={500}>{item.name}</Text>
             </Table.Td>
             <Table.Td>
                 <Badge
                     color={item.status === 'OUVERT' ? 'green' : item.status === 'FERMÉE' ? 'red' : 'yellow'}
-                    variant={item.status === 'PAUSE' ? 'light' : 'filled'}
+                    variant={item.status === 'OUVERT' || item.status === 'FERMÉE' ? 'filled' : 'light'}
                 >
                     {item.status}
                 </Badge>
@@ -37,21 +42,40 @@ export const QueueListTable: React.FC<QueueListTableProps> = ({ data, onManage, 
                 <Text>{item.avgTime || '-'}</Text>
             </Table.Td>
             <Table.Td>
-                {item.status === 'OUVERT' && (
-                    <Button size="xs" radius="xl" bg="blue.6" onClick={() => onManage(item.id)}>
-                        Gérer
-                    </Button>
-                )}
-                {item.status === 'FERMÉE' && (
-                    <Button size="xs" radius="xl" variant="outline" color="blue" onClick={() => onOpen(item.id)}>
-                        Ouvrir
-                    </Button>
-                )}
-                {item.status === 'PAUSE' && (
-                    <Button size="xs" radius="xl" variant="outline" color="yellow" onClick={() => onResume(item.id)}>
-                        Reprendre
-                    </Button>
-                )}
+                <Group wrap="nowrap">
+                    {item.status === 'OUVERT' && (
+                        <Button
+                            size="xs"
+                            radius="xl"
+                            bg="blue.6"
+                            onClick={(e) => { e.stopPropagation(); onManage(item.id); }}
+                        >
+                            Gérer
+                        </Button>
+                    )}
+                    {item.status === 'FERMÉE' && (
+                        <Button
+                            size="xs"
+                            radius="xl"
+                            variant="outline"
+                            color="blue"
+                            onClick={(e) => { e.stopPropagation(); onOpen(item.id); }}
+                        >
+                            Ouvrir
+                        </Button>
+                    )}
+                    {item.status === 'PAUSE' && (
+                        <Button
+                            size="xs"
+                            radius="xl"
+                            variant="outline"
+                            color="yellow"
+                            onClick={(e) => { e.stopPropagation(); onResume(item.id); }}
+                        >
+                            Reprendre
+                        </Button>
+                    )}
+                </Group>
             </Table.Td>
         </Table.Tr>
     ));

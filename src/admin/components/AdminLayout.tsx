@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { AppShell, Burger, Group, Title, Avatar, ActionIcon, Indicator, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBell } from '@tabler/icons-react';
@@ -7,6 +7,7 @@ import { Sidebar } from './Sidebar';
 
 const AdminLayout: React.FC = () => {
     const [opened, { toggle }] = useDisclosure();
+    const navigate = useNavigate();
 
     const [user, setUser] = React.useState<{ name: string, email: string } | null>(null);
 
@@ -37,7 +38,12 @@ const AdminLayout: React.FC = () => {
                     </Group>
                     <Group gap="lg">
                         <Indicator inline label=" " size={10} color="red" offset={4}>
-                            <ActionIcon variant="subtle" color="gray" size="lg">
+                            <ActionIcon
+                                variant="subtle"
+                                color="gray"
+                                size="lg"
+                                onClick={() => navigate('/admin/notifications')}
+                            >
                                 <IconBell size="1.2rem" />
                             </ActionIcon>
                         </Indicator>
